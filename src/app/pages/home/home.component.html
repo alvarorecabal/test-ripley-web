@@ -1,0 +1,16 @@
+<app-navbar></app-navbar>
+
+<div class="container main-container">
+    <div class="card-columns">
+        <div class="card animated fadeIn fast" *ngFor="let product of data.products">
+            <img class="card-img-top img-fluid" [src]="product.fullImage">
+            <div class="card-body">
+                <h5 class="card-title">{{ product.marca }}</h5>
+                <p class="text-price font-weight-light">{{ product.name }}</p>
+                <p class="text-price font-weight-light">{{ product.listPrice | formatAmount }}</p>
+                <p class="text-price font-weight-light">{{ product.offerPrice | formatAmount }}</p>
+                <button type="button" class="btn btn-outline-primary btn-block top" (click)="goToDetails(product.uniqueID)">Ver más</button>
+            </div>
+        </div>
+    </div>
+</div>

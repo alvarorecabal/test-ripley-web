@@ -1,0 +1,52 @@
+<app-navbar></app-navbar>
+
+
+<div class="container main-container">
+    <div *ngIf="find" class="card mb-3" style="max-width: 740px;">
+        <div class="row no-gutters">
+            <div class="col-md-5">
+                <img [src]="product.image" class="card-img" alt="...">
+            </div>
+            <div class="col-md-6">
+                <div class="card-body">
+                    <h3 class="card-title">{{ product.marca }}</h3>
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <div class="row">
+                        <div class="col">
+                            <p class="card-text">Normal </p>
+                            <p class="card-text">Internet </p>
+                            <p *ngIf="!hideCardPrice" class="card-text text-danger">Tarjeta Ripley </p>
+                        </div>
+                        <div class="col">
+                            <p class="card-text text-right">{{ product.listPrice | formatAmount }}</p>
+                            <p class="card-text text-right">{{ product.offerPrice | formatAmount }}</p>
+                            <p *ngIf="!hideCardPrice" class="card-text text-right text-danger">{{ product.cardPrice | formatAmount }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <p (click)="openDetails()"> + DETALLES</p>
+        <div *ngIf="collapseDetails">
+            <div [innerHTML]="product.description"></div>
+        </div>
+    </div>
+
+    <div>
+        <p (click)="openSpec()"> + ESPECIFICACIONES</p>
+        <div *ngIf="collapseSpec">
+            <div *ngFor="let attribute of product.attributes">
+                <p class="text-center">{{ attribute.name }}: {{ attribute.value }}</p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div *ngIf="!find">
+        <h5 class="card-title">Producto no encontrado</h5>
+    </div>
+</div>
